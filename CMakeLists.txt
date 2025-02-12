@@ -1,15 +1,17 @@
 cmake_minimum_required(VERSION 3.23)
 
 # # # # # # # # # # # # # # # # # # # # # # #
-#     Project name and version              #
+#     Project name, version                 #
 # # # # # # # # # # # # # # # # # # # # # # #
 project(WinShit LANGUAGES C)
 
-set(WINSHIT_MAJOR_VERSION 0)
+set(WINSHIT_MAJOR_VERSION 1)
 set(WINSHIT_MINOR_VERSION 1)
-set(WINSHIT_PATCH_VERSION 0)
+set(WINSHIT_PATCH_VERSION 2)
+
 set(WINSHIT_VERSION
     ${WINSHIT_MAJOR_VERSION}.${WINSHIT_MINOR_VERSION}.${WINSHIT_PATCH_VERSION})
+
 set(WINSHIT_VERSION_STRING "${WINSHIT_VERSION}")
 
 # # # # # # # # # # # # # # # # # # # # # # #
@@ -32,10 +34,13 @@ add_executable(bundler ${PROJECT_SOURCE_DIR}/bundler.c)
 set_target_properties(
   ${PROJECT_NAME}
   PROPERTIES
-  VERSION ${STONE_VERSION} SOVERSION ${STONE_MAJOR_VERSION}
+  VERSION ${WINSHIT_VERSION} SOVERSION ${WINSHIT_MAJOR_VERSION}
 )
 
 target_compile_definitions(${PROJECT_NAME} PUBLIC $<$<CONFIG:Debug>:DEBUG>)
 target_compile_definitions(${PROJECT_NAME} PUBLIC $<$<CONFIG:Release>:RELEASE>)
 
+# # # # # # # # # # # # # # # # # # # # # # #
+#     Subdirectories                        #
+# # # # # # # # # # # # # # # # # # # # # # #
 add_subdirectory(third-party)
